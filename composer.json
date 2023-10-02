@@ -1,0 +1,24 @@
+{
+    "name": "mouseketeers/elemental-slideshow",
+    "description": "Elemental slideshow",
+    "authors": [
+        {
+            "name": "Mouseketeers",
+            "email": "support@mouseketeers.dk",
+            "homepage": "http://www.mouseketeers.dk"
+        }
+    ],
+    "keywords": [
+        "silverstripe", "elemental", "content", "blocks", "content"
+    ],
+    "type": "silverstripe-vendormodule",
+    "license": "BSD-3-Clause",
+    "require": {
+        "dnadesign/silverstripe-elemental": "^4.0"
+    },
+    "config": {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

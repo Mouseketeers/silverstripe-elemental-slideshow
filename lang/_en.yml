@@ -1,0 +1,17 @@
+en:
+  Mouseketeers\Elements\Slideshow\Elements\ElementSlideshow:
+    BlockType: 'Slideshow'
+    FeaturesLabel: 'Slideshow'
+    LayoutLabel: 'Layout'
+    PLURALNAME: 'Slideshows'
+    PLURALS:
+      one: 'A Slideshow'
+      other: '{count} Slides'
+    SINGULARNAME: 'Slideshow'
+
+  Mouseketeers\Elements\Slideshow\Model\ElementSlideshowSlide:
+    PLURALNAME: 'Slideshow Slide'
+    PLURALS:
+      one: 'One Slideshow Slide'
+      other: '{count} Slideshow Slides'
+    SINGULARNAME: 'Slideshow Slide'
