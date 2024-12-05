@@ -1,9 +1,10 @@
 <?php
 
-namespace Mouseketeers\Elements\Slideshow\Elements;
+namespace Mouseketeers\Elements\Slideshow;
 
+use App\Web\Elements\ElementContentCustom;
 use DNADesign\Elemental\Models\BaseElement;
-use Mouseketeers\Elements\Slideshow\Model\ElementSlideshowSlide;
+use Mouseketeers\Elements\Slideshow\ElementSlideshowSlide;
 use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
@@ -15,7 +16,7 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use SilverStripe\Assets\Image;
 
 
-class ElementSlideshow extends BaseElement
+class ElementSlideshow extends ElementContentCustom
 {
 
 
@@ -32,10 +33,6 @@ class ElementSlideshow extends BaseElement
 
     private static $table_name = 'ElementSlideshow';
 
-
-    private static $db = [
-        'Content' => 'HTMLText'
-    ];
 
     private static $has_one = [
         'Image' => Image::class,
@@ -80,10 +77,17 @@ class ElementSlideshow extends BaseElement
      */
     public function getCMSFields()
     {
+        // $test = $this->ElementSlideshowSlides();
+        // print_r($test->first());
+        // die();
+
+
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            $fields->dataFieldByName('Content')
-                ->setTitle($this->fieldLabel('Content'))
-                ->setRows(5);
+
+            // migration todo
+            // $fields->dataFieldByName('Content')
+            //     ->setTitle($this->fieldLabel('Content'))
+            //     ->setRows(5);
 
             // $alternate = $fields->dataFieldByName('Alternate');
             // $fields->removeByName('Alternate');
@@ -148,6 +152,6 @@ class ElementSlideshow extends BaseElement
 
     public function getType()
     {
-        return _t(__CLASS__.'.BlockType', 'Slideshow / Carousel');
+        return _t(__CLASS__.'.BlockType', 'Slideshow');
     }
 }
