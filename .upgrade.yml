@@ -1,0 +1,4 @@
+mappings:
+  ElementSlideshow: Mouseketeers\Elements\Slideshow\ElementSlideshow
+  ElementSlideshowSlide: Mouseketeers\Elements\Slideshow\SlideshowSlide
+  SlideshowSlide: : Mouseketeers\Elements\Slideshow\SlideshowSlide
