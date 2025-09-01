@@ -14,7 +14,8 @@
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
-        "dnadesign/silverstripe-elemental": "^4.0"
+        "dnadesign/silverstripe-elemental": "^4.0",
+        "silverstripe/linkfield": "^2.0"
     },
     "config": {
         "process-timeout": 600
