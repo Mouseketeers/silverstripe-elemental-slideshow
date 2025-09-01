@@ -23,7 +23,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Mouseketeers\\Elements\\Slideshow": "src/"
+            "Mouseketeers\\Elements\\Slideshow\\": "src/"
         }
     }     
 }
