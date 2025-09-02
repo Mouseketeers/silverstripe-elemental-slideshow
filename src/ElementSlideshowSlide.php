@@ -32,6 +32,18 @@ class ElementSlideshowSlide extends DataObject
 
     private static $default_sort = 'Sort';
 
+    private static $owns = [
+        'Image'
+    ];
+
+    private static $cascade_deletes = [
+        'Image'
+    ];
+
+    private static $cascade_duplicates = [
+        'Image'
+    ];
+
 
     public function getCMSFields()
     {
