@@ -1,6 +1,7 @@
 <% require css('mouseketeers/elemental-slideshow:client/dist/css/slideshow.css') %>
 <% require javascript('mouseketeers/elemental-slideshow:client/dist/js/slideshow.js') %>
 
+<% cached 'element', $ID, $LastEdited %>
 <div class="element__container">
     <div class="element__item-container">
         <div class="element__content-container">
@@ -13,6 +14,7 @@
         </div>
     </div>
     <div class="element__item-container">
+        <div class="element__item">
             <% if $SlideshowSlides %>
                 <div class="slideshow-container swiper" data-slideshow="{$ID}">
                     <div class="slideshow-wrapper swiper-wrapper">
@@ -30,7 +32,6 @@
                                             <% end_if %>
                                         </div>
                                     <% end_if %>
-                                    
                                     <% if $Title || $Content %>
                                         <div class="slide__content">
                                             <% if $Title %>
@@ -40,7 +41,6 @@
                                             <% if $Content %>
                                                 <div class="slide__text">$Content</div>
                                             <% end_if %>
-                                            
                                             <% if $Link && not $Image %>
                                                 <div class="slide__link">
                                                     <a href="$Link.URL" class="btn" <% if $Link.OpenInNew %>target="_blank" rel="noopener"<% end_if %>>
@@ -66,3 +66,4 @@
         </div>
     </div>
 </div>
+<% end_cached %>

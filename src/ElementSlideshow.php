@@ -9,7 +9,8 @@ use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\ORM\FieldType\DBField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
-
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 
 class ElementSlideshow extends BaseElement
 {
@@ -41,18 +42,24 @@ class ElementSlideshow extends BaseElement
 
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             if ($this->ID) {
-                $items = $fields->dataFieldByName('ElementSlideshowSlides');
                 $fields->removeByName('ElementSlideshowSlides');
 
-                $config = $items->getConfig();
+                $config = GridFieldConfig_RelationEditor::create();
                 $config
-                    ->addComponent(new GridFieldOrderableRows())
+                    ->addComponent(new GridFieldOrderableRows('Sort'))
                     ->removeComponentsByType([
                         GridFieldAddExistingAutocompleter::class,
                         GridFieldDeleteAction::class
                     ]);
 
-                $fields->addFieldToTab('Root.Main', $items);
+                $slidesField = GridField::create(
+                    'ElementSlideshowSlides',
+                    'Slides',
+                    $this->ElementSlideshowSlides(),
+                    $config
+                );
+
+                $fields->addFieldToTab('Root.Main', $slidesField);
             }
         });
 

@@ -13,6 +13,9 @@ class ElementSlideshowSlide extends DataObject
 
     private static $table_name = 'ElementSlideshowSlide';
 
+    private static $singular_name = 'Slide';
+    private static $plural_name = 'Slides';    
+
     private static $db = [
         'Title' => 'Varchar(255)',
         'Content' => 'HTMLText',
@@ -26,7 +29,7 @@ class ElementSlideshowSlide extends DataObject
     );
 
     private static $summary_fields = array(
-        'Image.CMSThumbnail',
+        'Image.CMSThumbnail' => 'Image',
         'Title',
     );
 
@@ -47,31 +50,24 @@ class ElementSlideshowSlide extends DataObject
 
     public function getCMSFields()
     {
-        $this->beforeUpdateCMSFields(function ($fields) {
+        $fields = parent::getCMSFields();
+        
+        $fields->removeByName(['Sort', 'ElementSlideshowID']);
+        
+        $imageField = $fields->dataFieldByName('Image');
+        if ($imageField) {
+            $imageField->setFolderName('Uploads/Elements/Slideshow');
+        }
+        
+        $contentField = $fields->dataFieldByName('Content');
+        if ($contentField) {
+            $contentField->setRows(6);
+        }
+        
+        $fields->insertAfter('Image', LinkField::create('Link', 'Link'));
 
-            $fields->removeByName(array(
-                'Sort',
-            ));
-
-            $fields->replaceField(
-                'LinkID',
-                LinkField::create('LinkID', $this->fieldLabel('LinkID'))
-                    ->setDescription(_t(__CLASS__ . '.LinkDescription', 'optional. Add a call to action link.'))
-            );
-            $fields->insertBefore($fields->dataFieldByName('LinkID'), 'Content');
-
-            $image = $fields->dataFieldByName('Image')
-                ->setDescription(_t(__CLASS__ . '.ImageDescription', 'optional. Display an image.'))
-                ->setFolderName('Uploads/Elements/Objects');
-            $fields->insertBefore($image, 'Content');
-
-            $fields->dataFieldByName('Content')
-                ->setRows(8);
-        });
-
-        return parent::getCMSFields();
+        return $fields;
     }
-
     public function getSlideImage()
     {
         return $this->Image();
