@@ -26,5 +26,10 @@
         "psr-4": {
             "Mouseketeers\\Elements\\Slideshow\\": "src/"
         }
+    },
+    "extra": {
+        "expose": [
+            "client/dist"
+        ]
     }     
 }

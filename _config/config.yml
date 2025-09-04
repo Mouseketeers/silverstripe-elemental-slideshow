@@ -1,3 +1,7 @@
 ---
 Name: elements-slideshow
 ---
+Mouseketeers\Elements\Slideshow\ElementSlideshow:
+  styles:
+    default: 'Default'
+    carousel: 'Carousel'
