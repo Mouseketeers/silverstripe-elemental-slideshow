@@ -25,7 +25,7 @@ class ElementSlideshow extends BaseElement
 
     private static $db = [
         'HTML' => 'HTMLText'
-    ];    
+    ];
 
     private static $has_many = [
         'ElementSlideshowSlides' => ElementSlideshowSlide::class,
@@ -35,35 +35,36 @@ class ElementSlideshow extends BaseElement
         'ElementSlideshowSlides'
     ];
 
+	private static array $cascade_deletes = [
+        'ElementSlideshowSlides'
+    ];    
+
     private static $inline_editable = false;
 
     public function getCMSFields()
     {
+		$fields = parent::getCMSFields();
+        if ($this->ID) {
+            $fields->removeByName('ElementSlideshowSlides');
 
-        $this->beforeUpdateCMSFields(function (FieldList $fields) {
-            if ($this->ID) {
-                $fields->removeByName('ElementSlideshowSlides');
+            $config = GridFieldConfig_RelationEditor::create();
+            $config
+                ->addComponent(new GridFieldOrderableRows('Sort'))
+                ->removeComponentsByType([
+                    GridFieldAddExistingAutocompleter::class,
+                    GridFieldDeleteAction::class
+                ]);
 
-                $config = GridFieldConfig_RelationEditor::create();
+            $slidesField = GridField::create(
+                'ElementSlideshowSlides',
+                'Slides',
+                $this->ElementSlideshowSlides(),
                 $config
-                    ->addComponent(new GridFieldOrderableRows('Sort'))
-                    ->removeComponentsByType([
-                        GridFieldAddExistingAutocompleter::class,
-                        GridFieldDeleteAction::class
-                    ]);
-
-                $slidesField = GridField::create(
-                    'ElementSlideshowSlides',
-                    'Slides',
-                    $this->ElementSlideshowSlides(),
-                    $config
-                );
-
-                $fields->addFieldToTab('Root.Main', $slidesField);
-            }
-        });
-
-        return parent::getCMSFields();
+            );
+            
+            $fields->addFieldToTab('Root.Main', $slidesField);
+        }
+        return $fields;
     }
 
     public function getSlideshowSlides()
@@ -74,11 +75,21 @@ class ElementSlideshow extends BaseElement
     public function getSummary()
     {
         $count = $this->ElementSlideshowSlides()->count();
-        $label = _t(
-            ElementSlideshowSlide::class . '.PLURALS',
-            'One Slideshow Slide |{count} Slideshow Slides',
-            [ 'count' => $count ]
-        );
+        if ((int)$count === 1) {
+            $label = _t(
+                ElementSlideshowSlide::class . '.SINGULAR',
+                'One Slideshow Slide'
+            );
+        } else {
+            $label = sprintf(
+                _t(
+                    ElementSlideshowSlide::class . '.PLURAL',
+                    '%s Slideshow Slides'
+                ),
+                $count
+            );
+        }
+
         return DBField::create_field('HTMLText', $label)->Summary(20);
     }
 

@@ -1,0 +1,5 @@
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    ElementSlideshow: Mouseketeers\Elements\Slideshow\ElementSlideshow
+    ElementSlideshowSlide: Mouseketeers\Elements\Slideshow\ElementSlideshowSlide
+    SlideshowSlide: Mouseketeers\Elements\Slideshow\ElementSlideshowSlide

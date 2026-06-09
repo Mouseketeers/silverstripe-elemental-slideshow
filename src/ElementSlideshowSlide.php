@@ -19,19 +19,19 @@ class ElementSlideshowSlide extends DataObject
     private static $db = [
         'Title' => 'Varchar(255)',
         'Content' => 'HTMLText',
-        'Sort' => 'Int',
+        'Sort' => 'Int'
+    ];  
+
+    private static $has_one = [
+        'Image' => Image::class,
+        'ElementLink' => Link::class,
+        'ElementSlideshow' => ElementSlideshow::class
     ];
 
-    private static $has_one = array(
-        'Image' => Image::class,
-        'Link' => Link::class,
-        'ElementSlideshow' => ElementSlideshow::class,
-    );
-
-    private static $summary_fields = array(
+    private static $summary_fields = [
         'Image.CMSThumbnail' => 'Image',
         'Title',
-    );
+    ];
 
     private static $default_sort = 'Sort';
 
@@ -52,7 +52,7 @@ class ElementSlideshowSlide extends DataObject
     {
         $fields = parent::getCMSFields();
         
-        $fields->removeByName(['Sort', 'ElementSlideshowID']);
+        $fields->removeByName(['Sort', 'ElementSlideshowID', 'ElementLinkID']);
         
         $imageField = $fields->dataFieldByName('Image');
         if ($imageField) {
@@ -63,8 +63,8 @@ class ElementSlideshowSlide extends DataObject
         if ($contentField) {
             $contentField->setRows(6);
         }
-        
-        $fields->insertAfter('Image', LinkField::create('Link', 'Link'));
+
+        $fields->add(LinkField::create('ElementLink', 'Link'));
 
         return $fields;
     }
