@@ -1,5 +1,5 @@
 {
-    "name": "mouseketeers/elemental-slideshow",
+    "name": "mouseketeers/silverstripe-elemental-slideshow",
     "description": "Elemental slideshow",
     "authors": [
         {
@@ -18,6 +18,9 @@
     },
     "config": {
         "process-timeout": 600
+    },
+    "extra": {
+        "installer-name": "elemental-slideshow"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
