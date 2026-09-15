@@ -4,7 +4,6 @@ namespace Mouseketeers\Elements\Slideshow;
 
 use DNADesign\Elemental\Models\BaseElement;
 use Mouseketeers\Elements\Slideshow\ElementSlideshowSlide;
-use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\ORM\FieldType\DBField;
@@ -37,7 +36,11 @@ class ElementSlideshow extends BaseElement
 
 	private static array $cascade_deletes = [
         'ElementSlideshowSlides'
-    ];    
+    ];
+
+    private static $cascade_duplicates = [
+        'ElementSlideshowSlides'
+    ];
 
     private static $inline_editable = false;
 

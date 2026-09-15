@@ -40,11 +40,13 @@ class ElementSlideshowSlide extends DataObject
     ];
 
     private static $cascade_deletes = [
-        'Image'
+        'Image',
+        'Link'
     ];
 
     private static $cascade_duplicates = [
-        'Image'
+        'Image',
+        'Link'
     ];
 
 
