@@ -52,7 +52,7 @@ class ElementSlideshow extends BaseElement
 
             $config = GridFieldConfig_RelationEditor::create();
             $config
-                ->addComponent(\Symbiote\GridFieldExtensions\GridFieldOrderableRows::create('Sort'))
+                ->addComponent(GridFieldOrderableRows::create('Sort'))
                 ->removeComponentsByType([
                     GridFieldAddExistingAutocompleter::class,
                     GridFieldDeleteAction::class
