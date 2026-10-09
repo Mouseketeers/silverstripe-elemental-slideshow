@@ -36,17 +36,18 @@ class ElementSlideshowSlide extends DataObject
     private static $default_sort = 'Sort';
 
     private static $owns = [
-        'Image'
+        'Image',
+        'ElementLink'
     ];
 
     private static $cascade_deletes = [
         'Image',
-        'Link'
+        'ElementLink'
     ];
 
     private static $cascade_duplicates = [
         'Image',
-        'Link'
+        'ElementLink'
     ];
 
 
