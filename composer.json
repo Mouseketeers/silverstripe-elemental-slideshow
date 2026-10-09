@@ -9,15 +9,19 @@
         }
     ],
     "keywords": [
-        "silverstripe", "elemental", "content", "blocks", "content"
+        "silverstripe",
+        "elemental",
+        "content",
+        "blocks",
+        "content"
     ],
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
-        "dnadesign/silverstripe-elemental": "^5",
-        "silverstripe/linkfield": "^4",
-        "php": "^8.1",
-        "silverstripe/framework": "^5.4"
+        "dnadesign/silverstripe-elemental": "^6",
+        "silverstripe/linkfield": "^5",
+        "php": "^8.3",
+        "silverstripe/framework": "^6"
     },
     "config": {
         "process-timeout": 600
@@ -33,5 +37,5 @@
         "expose": [
             "client/dist"
         ]
-    }     
+    }
 }
