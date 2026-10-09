@@ -16,7 +16,7 @@ class ElementSlideshow extends BaseElement
 
     private static $singular_name = 'Slideshow';
     private static $plural_name = 'Slideshows';
-    private static $description = 'Slideshow';
+    private static $class_description = 'Slideshow';
 
     private static $icon = 'font-icon-block-carousel';
 
