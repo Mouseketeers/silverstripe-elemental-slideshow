@@ -105,6 +105,6 @@ class ElementSlideshow extends BaseElement
 
     public function getType()
     {
-        return _t(__CLASS__.'.BlockType', 'Slideshow');
+        return _t(self::class.'.BlockType', 'Slideshow');
     }
 }
